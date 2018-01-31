@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Flask-Testing Demo</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<style>
+		body {
+			background-color: #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div class="container mt-4">
+		
+		<div class="row">
+			<div class="col-6">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="text-center">My Todos</h5>
+						{% if get_flashed_messages() %}
+							{% for category, message in get_flashed_messages(with_categories=True) %}
+					  		<div class="alert alert-{{ category }} alert-dismissible text-center" role="alert">
+							    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							    	<span aria-hidden="true">&times;</span>
+							    </button>
+							    {{ message }}
+							  </div>
+							{% endfor %}
+						{% endif %}
+						{% for todo in todos %}
+							<div class="card mb-2">
+								<div class="card-body">
+									<h4 class="card-title">{{ todo.title }}</h4>
+									<p class="card-text">{{ todo.description }}</p>
+									<form action="{{ url_for('delete_todo', todo_id=todo.id) }}" method="POST">
+										<button type="submit" class="btn btn-danger">Delete</button>
+									</form>
+								</div>
+							</div>
+						{% else %}
+							<p class="text-center mt-4">You have no Todos.</p>
+						{% endfor %}
+					</div><!-- .card-body -->
+				</div><!-- .card -->
+			</div><!-- .col -->
+			<div class="col-6">
+				<div class="card">
+					<div class="card-body">
+						<form action="{{ url_for('add_todo') }}" method="POST">
+							<div class="form-group">
+								<label for="title">Title:</label>
+								<input type="text" class="form-control" id="title" name="title" required>
+							</div>
+							<div class="form-group">
+								<label for="description">Description:</label>
+								<textarea class="form-control" row="3" id="description" name="description"></textarea>
+							</div>
+							<div class="text-center">
+								<button type="submit" class="btn btn-primary">Add Todo</button>
+							</div>
+						</form>
+					</div><!-- .card-body -->
+				</div><!-- .card -->
+			</div><!-- .col -->
+		</div><!-- .row -->
+
+
+
+
+	</div><!-- .container -->
+	
+
+	<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

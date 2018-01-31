@@ -1,0 +1,14 @@
+blinker==1.4
+certifi==2018.1.18
+click==6.7
+coverage==4.4.2
+Flask==0.12.2
+Flask-SQLAlchemy==2.3.2
+Flask-Testing==0.7.1
+itsdangerous==0.24
+Jinja2==2.10
+MarkupSafe==1.0
+nose2==0.7.3
+six==1.11.0
+SQLAlchemy==1.2.2
+Werkzeug==0.14.1
